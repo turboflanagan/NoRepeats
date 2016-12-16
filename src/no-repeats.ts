@@ -1,65 +1,49 @@
 export class NoRepeats {
-    true() {
-        return true;
-    }
 
-    countPermutations(str: string): number {
-        let chars: any = str.split('');
-        let count = 0;
+    countPermutations(str: string) {
         let permutations = this.getPermutations(str);
-        if (chars.length == 1) {
+        let characters: any = str.split('');
+        if (characters.length == 1) {
             return 1;
         }
-        if (chars.length == 2) {
-            if (chars[0] !== chars[1]) {
+        if (characters.length == 2) {
+            if (characters[0] !== characters[1]) {
                 return 2;
             }
             return 0;
         }
 
-        for(let perm of permutations) {
-            let currentPermutation = perm;
-            // console.log(currentPermutation);
-            for(var i = 0; i < perm.length-1; i++) {
-                if(currentPermutation[i] !== currentPermutation[i+1]) {
-
-                    count += 1;
+        let goodPermutations = permutations.filter((permutation) => {
+            for (let i = 0; i < permutation.length - 1; i++) {
+                if (permutation.substring(i, i+1) === permutation.substring(i+1, i+2)) {
+                    return false;
                 }
             }
-            // if(currentPermutation[0] !== currentPermutation[1] && currentPermutation[1] !== currentPermutation[2] && currentPermutation[2] !== currentPermutation[3]) {
-            //     count += 1;
-            //     console.log(count);
-            // }
-        }
-        return count;
+            return true;
+        });
+        return goodPermutations.length;
     }
 
 
     getPermutations(str) {
-        var permutations = [],  //generated permutations stored here
-            nextWord = [],      //next word builds up in here
-            chars = []          //collection for each recursion level
-            ;
+        var permutations = [];
+        var nextPermutation = [];
+        var characters = [];
 
-        //split words or numbers into an array of characters
-        if (typeof str === 'string') chars = str.split('');
-        else if (typeof str === 'number') {
-            str = str + "";
-            chars = str.split('');
-        }
+        if (typeof str === 'string') characters = str.split('');
 
-        permutate(chars);
+        permutate(characters);
         return permutations;
 
-        function permutate(chars) {
-            if (chars.length === 0) {
-                permutations.push(nextWord.join(''));
+        function permutate(characters) {
+            if (characters.length === 0) {
+                permutations.push(nextPermutation.join(''));
             }
-            for (var i = 0; i < chars.length; i++) {
-                chars.push(chars.shift());
-                nextWord.push(chars[0]);
-                permutate(chars.slice(1));
-                nextWord.pop();
+            for (var i = 0; i < characters.length; i++) {
+                characters.push(characters.shift());
+                nextPermutation.push(characters[0]);
+                permutate(characters.slice(1));
+                nextPermutation.pop();
             }
         }
     }

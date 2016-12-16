@@ -1,13 +1,6 @@
 "use strict";
 var no_repeats_1 = require("../src/no-repeats");
 describe("function name", function () {
-    it("should return true", function () {
-        expect(true).toBe(true);
-    });
-    it("should return true", function () {
-        var sample = new no_repeats_1.NoRepeats();
-        expect(sample.true()).toBe(true);
-    });
     it("should return 1 combination for 1 letter", function () {
         var noRepeats = new no_repeats_1.NoRepeats();
         expect(noRepeats.countPermutations("a")).toBe(1);
@@ -36,9 +29,25 @@ describe("function name", function () {
         var noRepeats = new no_repeats_1.NoRepeats();
         expect(noRepeats.countPermutations("aabb")).toBe(8);
     });
-    xit("should return 12 combinations for aaabb", function () {
+    it("should return 12 combinations for aaabb", function () {
         var noRepeats = new no_repeats_1.NoRepeats();
         expect(noRepeats.countPermutations("aaabb")).toBe(12);
+    });
+    it("should return 3600 combinations for abcdefa", function () {
+        var noRepeats = new no_repeats_1.NoRepeats();
+        expect(noRepeats.countPermutations("abcdefa")).toBe(3600);
+    });
+    it("should return 2640 combinations for abfdefa", function () {
+        var noRepeats = new no_repeats_1.NoRepeats();
+        expect(noRepeats.countPermutations("abfdefa")).toBe(2640);
+    });
+    it("should return 0 combinations for aaab", function () {
+        var noRepeats = new no_repeats_1.NoRepeats();
+        expect(noRepeats.countPermutations("aaab")).toBe(0);
+    });
+    it("should return 0 combinations for zzzzzzzz", function () {
+        var noRepeats = new no_repeats_1.NoRepeats();
+        expect(noRepeats.countPermutations("zzzzzzzz")).toBe(0);
     });
 });
 //# sourceMappingURL=no-repeats.spec.js.map

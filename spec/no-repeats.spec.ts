@@ -1,12 +1,5 @@
 import {NoRepeats} from "../src/no-repeats"
 describe("function name", ()=> {
-    it("should return true", ()=> {
-        expect(true).toBe(true);
-    });
-    it("should return true", ()=> {
-        let sample: NoRepeats = new NoRepeats();
-        expect(sample.true()).toBe(true);
-    });
     it("should return 1 combination for 1 letter", ()=> {
         let noRepeats = new NoRepeats();
         expect(noRepeats.countPermutations("a")).toBe(1);
@@ -35,8 +28,24 @@ describe("function name", ()=> {
         let noRepeats = new NoRepeats();
         expect(noRepeats.countPermutations("aabb")).toBe(8);
     });
-    xit("should return 12 combinations for aaabb", ()=> {
+    it("should return 12 combinations for aaabb", ()=> {
         let noRepeats = new NoRepeats();
         expect(noRepeats.countPermutations("aaabb")).toBe(12);
+    });
+    it("should return 3600 combinations for abcdefa", ()=> {
+        let noRepeats = new NoRepeats();
+        expect(noRepeats.countPermutations("abcdefa")).toBe(3600);
+    });
+    it("should return 2640 combinations for abfdefa", ()=> {
+        let noRepeats = new NoRepeats();
+        expect(noRepeats.countPermutations("abfdefa")).toBe(2640);
+    });
+    it("should return 0 combinations for aaab", ()=> {
+        let noRepeats = new NoRepeats();
+        expect(noRepeats.countPermutations("aaab")).toBe(0);
+    });
+    it("should return 0 combinations for zzzzzzzz", ()=> {
+        let noRepeats = new NoRepeats();
+        expect(noRepeats.countPermutations("zzzzzzzz")).toBe(0);
     });
 });
